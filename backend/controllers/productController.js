@@ -7,7 +7,7 @@ const cloudinary = require("cloudinary");
 // Create Product -- Admin
 exports.createProduct = catchAsyncErrors(async (req, res, next) => {
 
- let images = [];
+  let images = [];
 
   if (typeof req.body.images === "string") {
     images.push(req.body.images);
@@ -39,11 +39,3 @@ exports.createProduct = catchAsyncErrors(async (req, res, next) => {
     product,
   });
 });
-
-const apiFeature = new ApiFeatures(Product.find(), req.query)
-  .search()
-  .filter();
-
-let products = await apiFeature.query;
-
-let filteredProductsCount = products.length;
