@@ -39,3 +39,11 @@ exports.createProduct = catchAsyncErrors(async (req, res, next) => {
     product,
   });
 });
+
+const apiFeature = new ApiFeatures(Product.find(), req.query)
+  .search()
+  .filter();
+
+let products = await apiFeature.query;
+
+let filteredProductsCount = products.length;
