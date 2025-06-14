@@ -227,4 +227,8 @@ exports.deleteReview = catchAsyncErrors(async (req, res, next) => {
     return next(new ErrorHander("Product not found", 404));
   }
 
+  const reviews = product.reviews.filter(
+    (rev) => rev._id.toString() !== req.query.id.toString()
+  );
+
   });
