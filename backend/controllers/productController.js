@@ -218,3 +218,13 @@ exports.getProductReviews = catchAsyncErrors(async (req, res, next) => {
     reviews: product.reviews,
   });
 });
+
+// Delete Review
+exports.deleteReview = catchAsyncErrors(async (req, res, next) => {
+  const product = await Product.findById(req.query.productId);
+
+  if (!product) {
+    return next(new ErrorHander("Product not found", 404));
+  }
+
+  });
