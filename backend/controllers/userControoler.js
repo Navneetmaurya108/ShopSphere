@@ -85,5 +85,17 @@ exports.forgotPassword = catchAsyncErrors(async (req, res, next) => {
 
   const message = `Your password reset token is :- \n\n ${resetPasswordUrl} \n\nIf you have not requested this email then, please ignore it.`;
 
+   
+    await sendEmail({
+      email: user.email,
+      subject: `Ecommerce Password Recovery`,
+      message,
+    });
+
+    res.status(200).json({
+      success: true,
+      message: `Email sent to ${user.email} successfully`,
+    });
+  
 
   });
