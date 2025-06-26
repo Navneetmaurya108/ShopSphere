@@ -3,6 +3,8 @@ const catchAsyncErrors = require("./catchAsyncErrors");
 const jwt = require("jsonwebtoken");
 const User = require("../models/userModel");
 
+//Middleware to check if the user is authenticated
+
 exports.isAuthenticatedUser = catchAsyncErrors(async (req, res, next) => {
   const { token } = req.cookies;
 
@@ -16,6 +18,8 @@ exports.isAuthenticatedUser = catchAsyncErrors(async (req, res, next) => {
 
   next();
 });
+
+// Middleware to authorize specific user roles
 
 exports.authorizeRoles = (...roles) => {
   return (req, res, next) => {
