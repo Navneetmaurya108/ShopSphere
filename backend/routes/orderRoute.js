@@ -1,4 +1,7 @@
 const express = require("express");
+
+// Import controller functions for handling order-related operations
+
 const {
   newOrder,
   getSingleOrder,
@@ -8,6 +11,8 @@ const {
   deleteOrder,
 } = require("../controllers/orderController");
 const router = express.Router();
+
+// Import middleware to check authentication and authorization
 
 const { isAuthenticatedUser, authorizeRoles } = require("../middleware/auth");
 
