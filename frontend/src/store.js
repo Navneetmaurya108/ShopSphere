@@ -12,6 +12,14 @@ import {
   reviewReducer,
 } from "./reducers/productReducer";
 
+import {
+  allUsersReducer,
+  forgotPasswordReducer,
+  profileReducer,
+  userDetailsReducer,
+  userReducer,
+} from "./reducers/userReducer";
+
 const reducer = combineReducers({
   products: productsReducer,
   productDetails: productDetailsReducer,
@@ -20,6 +28,11 @@ const reducer = combineReducers({
   newReview: newReviewReducer,
   productReviews: productReviewsReducer,
   review: reviewReducer,
+   user: userReducer,
+  profile: profileReducer,
+  forgotPassword: forgotPasswordReducer,
+  allUsers: allUsersReducer,
+  userDetails: userDetailsReducer,
 });
 
 const middleware = [thunk];
