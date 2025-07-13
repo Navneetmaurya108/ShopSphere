@@ -210,3 +210,24 @@ export const getAllReviews = (id) => async (dispatch) => {
     });
   }
 };
+
+// Delete Review of a Product
+export const deleteReviews = (reviewId, productId) => async (dispatch) => {
+  try {
+    dispatch({ type: DELETE_REVIEW_REQUEST });
+
+    const { data } = await axios.delete(
+      `/api/v1/reviews?id=${reviewId}&productId=${productId}`
+    );
+
+    dispatch({
+      type: DELETE_REVIEW_SUCCESS,
+      payload: data.success,
+    });
+  } catch (error) {
+    dispatch({
+      type: DELETE_REVIEW_FAIL,
+      payload: error.response.data.message,
+    });
+  }
+}; 
