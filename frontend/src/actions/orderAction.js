@@ -115,3 +115,19 @@ export const deleteOrder = (id) => async (dispatch) => {
     });
   }
 };
+
+// Get Order Details
+export const getOrderDetails = (id) => async (dispatch) => {
+  try {
+    dispatch({ type: ORDER_DETAILS_REQUEST });
+
+    const { data } = await axios.get(`/api/v1/order/${id}`);
+
+    dispatch({ type: ORDER_DETAILS_SUCCESS, payload: data.order });
+  } catch (error) {
+    dispatch({
+      type: ORDER_DETAILS_FAIL,
+      payload: error.response.data.message,
+    });
+  }
+};
