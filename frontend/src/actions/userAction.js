@@ -190,3 +190,15 @@ export const getAllUsers = () => async (dispatch) => {
     dispatch({ type: ALL_USERS_FAIL, payload: error.response.data.message });
   }
 };
+
+// get  User Details
+export const getUserDetails = (id) => async (dispatch) => {
+  try {
+    dispatch({ type: USER_DETAILS_REQUEST });
+    const { data } = await axios.get(`/api/v1/admin/user/${id}`);
+
+    dispatch({ type: USER_DETAILS_SUCCESS, payload: data.user });
+  } catch (error) {
+    dispatch({ type: USER_DETAILS_FAIL, payload: error.response.data.message });
+  }
+};
