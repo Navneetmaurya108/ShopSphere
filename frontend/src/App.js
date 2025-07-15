@@ -42,3 +42,30 @@ import ProductReviews from "./component/Admin/ProductReviews";
 import Contact from "./component/layout/Contact/Contact";
 import About from "./component/layout/About/About";
 import NotFound from "./component/layout/Not Found/NotFound";
+
+function App() {
+      const { isAuthenticated, user } = useSelector((state) => state.user);
+
+const [stripeApiKey, setStripeApiKey] = useState("");
+
+  async function getStripeApiKey() {
+    const { data } = await axios.get("/api/v1/stripeapikey");
+
+    setStripeApiKey(data.stripeApiKey);
+  }
+
+  useEffect(() => {
+    WebFont.load({
+      google: {
+        families: ["Roboto", "Droid Sans", "Chilanka"],
+      },
+    });
+
+    store.dispatch(loadUser());
+
+    getStripeApiKey();
+  }, []);
+
+    }
+
+    export default App;
